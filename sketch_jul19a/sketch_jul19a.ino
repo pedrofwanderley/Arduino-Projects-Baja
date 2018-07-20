@@ -24,17 +24,33 @@ void setup()
 void loop()
 {
    // read the first tension;
-  int firstRead = analogRead(A0);
-
+  int firstReadA0 = analogRead(A0);
   // read the second tension;
-  int secondRead = analogRead(A0);
-
+  int secondReadA0 = analogRead(A0);
   //Calculates the medium tension between frist and second read;
-  float media = (firstRead + secondRead) / 2.0;
+  float mediaA0 = (firstRead + secondRead) / 2.0;
+   
+  int firstReadA1 = analogRead(A1);
+  int secondReadA1 = analogRead(A1);
+  float mediaA1 = (firstReadA1 + secondReadA1) / 2.0;
+
+   
+  int firstReadA2 = analogRead(A2);
+  int secondReadA2 = analogRead(A2);
+  float mediaA2 = (firstReadA2 + secondReadA2) / 2.0;
+
+
+  
   // Set the lcd cursor to forth column and third line;
-  lcd.setCursor(3,10);
+  lcd.setCursor(10,3);
   // Should print on the lcd the calculated media, instanteneously;
-  lcd.print(media)
+  lcd.print(mediaA0);
+
+  lcd.setCursor(10,0);
+  lcd.print(mediaA1);
+
+  lcd.setCursor(10,1);
+  lcd.print(mediaA2);
   delay(1);        // delay in between reads for stability
 }
 
