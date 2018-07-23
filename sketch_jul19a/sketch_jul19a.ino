@@ -1,10 +1,17 @@
 
 // Carrega a biblioteca do LCD
+/* link de tutorial de configuração de arduino com placa 12c:
+ *  https://portal.vidadesilicio.com.br/display-lcd-20x4-16x2-adaptador-i2c/
+ */
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 #include <LiquidCrystal.h>
 
 // Inicializa o LCD
-const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
-LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+LiquidCrystal_I2C lcd(0x27,2,1,0,4,5,6,7,3, POSITIVE);
+/*
+ * (Endereço,en,rw,rs,d4,d5,d6,d7,bl, blpol)
+ */
 void setup()
 {
   Serial.begin(9600);
