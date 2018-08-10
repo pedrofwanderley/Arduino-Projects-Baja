@@ -1,17 +1,6 @@
-/*CÓDIGO DESATUALIZADO*/
-
-
-// Carrega a biblioteca do LCD
-/* link de tutorial de configuração de arduino com placa 12c:
- *  https://portal.vidadesilicio.com.br/display-lcd-20x4-16x2-adaptador-i2c/
- */
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-// Inicializa o LCD
-LiquidCrystal_I2C lcd(0x27,2,1,0,4,5,6,7,3, POSITIVE);
-/*
- * (Endereço,en,rw,rs,d4,d5,d6,d7,bl, blpol)
- */
+#include <Wire.h>
+LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7,3, POSITIVE);
 void setup()
 {
   Serial.begin(9600);
@@ -19,13 +8,14 @@ void setup()
   // As linhas nao de 0 à 3 e as colunas de 0 à 19;
   lcd.begin(20, 4);
   
+  
   // Mostra informacoes no display
   lcd.setCursor(1,0);
-  lcd.print("Velocidade");
+  lcd.print("Vel  --> ");
   lcd.setCursor(1,1);
-  lcd.print("Rpm");
+  lcd.print("Rpm  --> ");
   lcd.setCursor(1,3);
-  lcd.print("Combustivel");
+  lcd.print("Comb --> ");
 }
 
 void loop()
@@ -35,7 +25,7 @@ void loop()
   // read the second tension;
   int secondReadA0 = analogRead(A0);
   //Calculates the medium tension between frist and second read;
-  float mediaA0 = (firstRead + secondRead) / 2.0;
+  float mediaA0 = (firstReadA0 + secondReadA0) / 2.0;
    
   int firstReadA1 = analogRead(A1);
   int secondReadA1 = analogRead(A1);
