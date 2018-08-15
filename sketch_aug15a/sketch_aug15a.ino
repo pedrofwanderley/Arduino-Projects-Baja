@@ -2,7 +2,7 @@
 #define oscilador 1
 #define sensor 5
 
-int qtd_osc=0,pulso;
+int qtd_osc=0, pulso;
 
 void setup(){
   
@@ -22,7 +22,7 @@ void ipt2(){
 }
 
 
-int pulsoAnterior;
+int pulso, pulsoAnterior;
 float tempo=0, velocidade=0;
 
 void loop(){
