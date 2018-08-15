@@ -18,18 +18,15 @@ void ipt1(){
 }
 
 void ipt2(){
-  pulso = 1; // vai deixar tanto o pulso quanto o pulso anterior em 1
+  pulso = 1; 
 }
 
 
-int pulsoAnterior;
 float tempo=0, velocidade=0;
 
 void loop(){
-  pulsoAnterior = pulso;
-  pulso = digitalRead(sensor);
     
-  if (pulsoAnterior == 0 && pulso == 1)
+  if (pulso == 1)
   {  
     tempo = qtd_osc * 0.00394;
     velocidade = 1.76 / tempo;
