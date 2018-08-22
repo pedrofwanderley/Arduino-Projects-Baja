@@ -2,9 +2,8 @@
 #define oscilador 1
 #define sensor 5
 
-int qtd_osc=0
+int qtd_osc=0;
 int pulso = 0;
-
 void setup(){
   
   Serial.begin(9600);
@@ -33,6 +32,7 @@ void loop(){
     velocidade = 1.76 / tempo;
     qtd_osc = 0;
     pulso = 0;
+    Serial.println(oscilador);
     Serial.println(velocidade);
   }
 }  

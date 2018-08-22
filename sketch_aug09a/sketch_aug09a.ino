@@ -8,19 +8,18 @@ void setup()
   // As linhas nao de 0 à 3 e as colunas de 0 à 19;
   lcd.begin(20, 4);
   
-  /*
+  
   // Mostra informacoes no display
   lcd.setCursor(1,0);
   lcd.print("Vel  --> ");
   lcd.setCursor(1,3);
   lcd.print("Rpm  --> ");
-  */
-  init_super_font(&lcd);
+  
 }
 
 void loop()
 {
-  /*
+  
    // read the first tension;
   int firstReadA0 = analogRead(A0);
   // read the second tension;
@@ -41,13 +40,14 @@ void loop()
   
   // Set the lcd cursor to forth column and third line;
   // Should print on the lcd the calculated media, instanteneously;
+  lcd.setCursor(10,3);
   lcd.print(mediaA0);
 
   lcd.setCursor(10,0);
   lcd.print(mediaA1);
 
-  lcd.setCursor(10,3);
+  
   delay(1000);        // delay in between reads for stability
-*/
+
 }
 
