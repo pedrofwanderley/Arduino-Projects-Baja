@@ -204,6 +204,8 @@ void loop() {
   lcd.clear();
   displayRPM(rpm);
   displayBar(rpm);
+   Serial.write("#TextRPM0"); Serial.print(rpm);  Serial.write("\n");
+  delay(30);
 //===================================================RPM========================================================
 
 
