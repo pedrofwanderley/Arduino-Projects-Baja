@@ -206,7 +206,7 @@ void setup() {
     for (bc=0; bc<8; bc++) bb[bc]= pgm_read_byte( &custom[nb][bc] );
     lcd.createChar ( nb+1, bb );
   }
-  lcd.clear();
+//  lcd.clear();
 // ================================================ DISPLAY ========================================================
 
  // ================================================ COMBUSTÍVEL ========================================================
@@ -244,8 +244,7 @@ void loop() {
   
 //====================================================RPM=======================================================
   //Atualiza contador a cada segundo
-  if (millis() - timeold >= 1000)
-  {
+  
     //Desabilita interrupcao durante o calculo
     detachInterrupt(1);
     rpm = (60 * 1000 / pulsos_por_volta ) / (millis() - timeold) * pulsos;
@@ -253,17 +252,16 @@ void loop() {
     pulsos = 0;
    
 
-    //Mostra o valor de RPM no serial monitor
-     lcd.setCursor(0,2);
-     lcd.print(rpm);
     //Habilita interrupcao
     attachInterrupt(1, contador, FALLING);
+  
+  
+  
+  
+  if (rpm > rpmMaximum){
+    rpmMaximum = rpm;
   }
-  
-  
-  
-  if (rpm > rpmMaximum) rpmMaximum = rpm;
-  lcd.clear();
+  //lcd.clear();
   displayRPM(rpm);
   displayBar(rpm);
    Serial.write("#TextRPM0"); Serial.print(rpm);  Serial.write("\n");
@@ -290,6 +288,7 @@ combustivel();
  writeBigString(thisVel, 0, 2);
  
  writeBigString("KM|H", 8, 2);
+ 
 //===================================================SPEED========================================================
 
 }
