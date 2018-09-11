@@ -101,10 +101,28 @@ byte col,row,nb=0,bc=0;                                   // general
 byte bb[8];                                               // byte buffer for reading from PROGMEM
 // ================================================ DISPLAY ========================================================
 
+
+// ================================================ COMBUSTÍVEL ========================================================
+#define nComb 200 //tamanho do array pra fazer a media
+// digital pin 2, 4, 7, 8 has a sensor attached to it. Give it a name:
+#define pushButton 2
+#define pushButton1 4
+#define pushButton2 7 
+#define pushButton3 8
+
+ //unsigned long timeold;
+
+long cont = 0;
+short valorAtual;
+int somaTotal;
+
+
+ // ================================================ COMBUSTÍVEL ========================================================
+
 // ================================================ COMBUSTÍVEL ========================================================
 
 
-void diego()
+void combustivel()
 {
    if (digitalRead(pushButton)) {
     valorAtual = 25;
@@ -143,16 +161,17 @@ void diego()
 
 //===================================================RPM========================================================
 
+
+
 //--- Mapeamento de Hardware ---
 #define   vcc      5
 #define   gnd      4
 #define   pino_D0  3
-#define   analog   2
 // --- Variáveis Globais --- 
 int           rpm;
 volatile byte pulsos;
 unsigned long timeold;
-const int maxRPM = 1500;                  // maximum RPM for LCD Bar
+const int maxRPM = 4100;                  // maximum RPM for LCD Bar
 int rpmMaximum = 0;
 //Altere o numero abaixo de acordo com o seu disco encoder
 unsigned int pulsos_por_volta = 4;
@@ -167,23 +186,7 @@ void contador()
 
 //===================================================RPM========================================================
 
-// ================================================ COMBUSTÍVEL ========================================================
-#define nComb 200 //tamanho do array pra fazer a media
-// digital pin 2, 4, 7, 8 has a sensor attached to it. Give it a name:
-#define pushButton 2
-#define pushButton1 4
-#define pushButton2 7 
-#define pushButton3 8
-#define a 100
-#define b 0
- unsigned long timeold;
 
-long cont = 0;
-short valorAtual;
-int somaTotal;
-
-
- // ================================================ COMBUSTÍVEL ========================================================
 
 
 
@@ -219,7 +222,6 @@ void setup() {
   pinMode(vcc,    OUTPUT);
   pinMode(gnd,    OUTPUT);
   pinMode(pino_D0, INPUT);
-  pinMode(analog,  INPUT);
 
   digitalWrite(vcc, HIGH);
   digitalWrite(gnd,  LOW);
@@ -271,7 +273,7 @@ void loop() {
 
 // ================================================ COMBUSTÍVEL ========================================================
 
-diego();
+combustivel();
 
 // ================================================ COMBUSTÍVEL ========================================================
 
