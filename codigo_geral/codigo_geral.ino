@@ -101,6 +101,44 @@ byte col,row,nb=0,bc=0;                                   // general
 byte bb[8];                                               // byte buffer for reading from PROGMEM
 // ================================================ DISPLAY ========================================================
 
+// ================================================ COMBUSTÍVEL ========================================================
+
+
+void diego()
+{
+   if (digitalRead(pushButton)) {
+    valorAtual = 25;
+    delay(10);
+  }
+  if (digitalRead(pushButton1)) {
+    valorAtual = 50;
+    delay(10);
+  }
+  if (digitalRead(pushButton2)) {
+    valorAtual = 75;
+    delay(10);
+  }
+  if (digitalRead(pushButton3)) {
+    valorAtual = 99;
+    delay(10);
+  }
+
+  if( valorAtual == 0)
+  {
+    Serial.write("#TextGas00"); Serial.print(valorAtual);  Serial.write("\n");
+    delay(100);
+    }
+    else
+    {
+      Serial.write("#TextGas0"); Serial.print(valorAtual);  Serial.write("\n");
+      delay(100);
+          
+      }
+  
+  }
+
+
+// ================================================ COMBUSTÍVEL ========================================================
 
 
 //===================================================RPM========================================================
@@ -110,8 +148,6 @@ byte bb[8];                                               // byte buffer for rea
 #define   gnd      4
 #define   pino_D0  3
 #define   analog   2
-
- 
 // --- Variáveis Globais --- 
 int           rpm;
 volatile byte pulsos;
@@ -130,6 +166,25 @@ void contador()
 }
 
 //===================================================RPM========================================================
+
+// ================================================ COMBUSTÍVEL ========================================================
+#define nComb 200 //tamanho do array pra fazer a media
+// digital pin 2, 4, 7, 8 has a sensor attached to it. Give it a name:
+#define pushButton 2
+#define pushButton1 4
+#define pushButton2 7 
+#define pushButton3 8
+#define a 100
+#define b 0
+ unsigned long timeold;
+
+long cont = 0;
+short valorAtual;
+int somaTotal;
+
+
+ // ================================================ COMBUSTÍVEL ========================================================
+
 
 
 
@@ -151,8 +206,13 @@ void setup() {
   lcd.clear();
 // ================================================ DISPLAY ========================================================
 
+ // ================================================ COMBUSTÍVEL ========================================================
+ pinMode(pushButton, INPUT);
+  pinMode(pushButton1, INPUT);
+  pinMode(pushButton2, INPUT);
+  pinMode(pushButton3, INPUT);
 
-
+ // ================================================ COMBUSTÍVEL ========================================================
   
 //===================================================RPM========================================================
   
@@ -209,6 +269,11 @@ void loop() {
 //===================================================RPM========================================================
 
 
+// ================================================ COMBUSTÍVEL ========================================================
+
+diego();
+
+// ================================================ COMBUSTÍVEL ========================================================
 
 
 //===================================================SPEED========================================================
